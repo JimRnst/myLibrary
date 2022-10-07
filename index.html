@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c4b34cc545.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div id="logo-odin"><img src="https://miro.medium.com/max/1200/1*P_wUre75IHZUQYFjoD7GZA.png" alt="The Odin Project"></div>
+        <div id="logo-myLibrary">
+            <div id="library">My Library</div>
+            <div id="by">by Jaime Lara</div>
+        </div>
+    </header>
+    <main>
+        <div id="form-container">
+            <form action="#">
+                <div id="form-title">
+                    <label for="title">Title book</label><br>
+                    <input type="text" name="title" id="title"><br>
+                </div>
+                <div id="form-author">
+                    <label for="author">Author</label><br>
+                    <input type="text" name="author" id="author">
+                </div>
+                <div id="form-pages">
+                    <label for="pages">Pages</label><br>
+                    <input type="number" name="pages" id="pages">
+                </div>
+                <div id="form-status">
+                    <label for="status">Status</label><br>
+                    <select name="status" id="status">
+                        <option value="Read">Read</option>
+                        <option value="Not Read" selected>Not Read</option>
+                    </select>
+                </div>
+            </form>
+            <button id="btn-add-book">Add New Book</button>
+        </div>
+            <div id="menu">
+                <i class="fa-solid fa-plus fa-2xl   " id="open-menu"><span> Add new book</span></i>
+                <i class="fa-solid fa-x fa-xl" id="close-menu"></i>
+            </div>
+        <table id="table-form">
+            <thead>
+                <th>Title</th>
+                <th>Author</th>
+                <th class="w-esp">Pages</th>
+                <th class="w-esp">Status</th>
+                <th  id="notcross"><i class="fa-solid fa-circle-xmark"></i></th>
+            </thead>
+            <tbody id="insert-books"></tbody>
+        </table>
+    </main>
+    <script src="js/app.js"></script>
+</body>
+</html>
