@@ -17,40 +17,28 @@ let myLibrary = [];
 
 //functions
 
-class Book{
-    constructor(title, author, pages, status){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.status = status;
-    }
-}
-
 function addBookToLibrary(){
     if(bookTitle.value.length === 0 || bookAuhtor.value.length === 0 || bookPages.value.length === 0){
         alert("Please, fill all the fields");
         return;
     } 
-
-    const book = new Book(bookTitle.value, bookAuhtor.value, bookPages.value, bookStatus.value);
     
-    myLibrary.push(book);
+    myLibrary.push({title: bookTitle.value, author: bookAuhtor.value, pages: bookPages.value, status: bookStatus.value});
 }
 
 function showBook(){
     table.textContent = ""
     for(let i = 0; i < myLibrary.length; i++){
         const row = document.createElement("tr");
-        row.setAttribute("id", `${i}`)
+        row.setAttribute("id", `${i}`);
          row.innerHTML  = `
             <td>${myLibrary[i].title}</td>
             <td>${myLibrary[i].author}</td>
             <td>${myLibrary[i].pages}</td>
             <td class="btn-status">${myLibrary[i].status}</td>
             <td class="removeBooks"><i class="fa-solid fa-xmark"></i></td>
-
-         `
-        table.prepend(row)
+         `;
+        table.prepend(row);
     }
 }
 
@@ -58,19 +46,6 @@ function clearForm(){
     bookTitle.value = "";
     bookAuhtor.value = "";
     bookPages.value = "";
-
-
-}
-
-function changeStatus(id){
-   
-}
-
-function deleteBook(id){
-    let bookToDelete = document.getElementById(id);
-    table.removeChild(bookToDelete)
-
-    myLibrary.splice(id, 1)
 }
 
 //eventListener
@@ -90,12 +65,14 @@ btnSubmit.addEventListener("click", (e) => {
     addBookToLibrary();
     showBook();
     clearForm();
+    console.log(myLibrary);
 });
 
 table.addEventListener("click", (e) => {
    if(e.target.className === "fa-solid fa-xmark"){
-    deleteBook(e.target.parentNode.parentNode.id);
-   } 
+    document.getElementById(e.target.parentNode.parentNode.id).remove();
+    myLibrary.splice(myLibrary.findIndex(book => book.title === e.target.parentElement.parentElement.children[0].innerText));
+   };
 
    if(e.target.className === "btn-status"){
     let bookId = e.target.parentNode.id;
@@ -106,7 +83,6 @@ table.addEventListener("click", (e) => {
          myLibrary[bookId].status = "Read"
          e.target.textContent = "Read"
     }
-    
    }
 })
 })();
